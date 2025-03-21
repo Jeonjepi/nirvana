@@ -13,7 +13,7 @@ const HomePage: React.FC = () => {
     "아닙니다.",
     "믿어",
     "주세요... 전",
-    "돌고래입니",
+    "부처 입니",
     "다."
   ];
 
@@ -26,14 +26,14 @@ const HomePage: React.FC = () => {
       <div className="flex flex-col items-center justify-center min-h-[50vh]">
         <IconMessage 
           message={dolphinMessage} 
-          icon="/assets/icons/windows.png" 
+          icon="/assets/images/bud.png" 
           alternateText="돌고래"
           width="80px" // 원하는 너비 값을 전달
         />
-        
+{/*         
         <div className="mt-16 flex justify-end w-full">
           <NavButton targetPage={PageType.SERVER_INTRO} />
-        </div>
+        </div> */}
       </div>
     </Layout>
   );

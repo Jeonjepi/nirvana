@@ -35,7 +35,7 @@ const BuddhaMessage: React.FC = () => {
           <p className="text-base font-medium">아닙니다.</p>
           <p className="text-base font-medium">믿어</p>
           <p className="text-base font-medium">주세요... 전</p>
-          <p className="text-base font-medium">돌고래입니</p>
+          <p className="text-base font-medium">부처 입니</p>
           <p className="text-base font-medium">다</p>
         </div>
       </div>

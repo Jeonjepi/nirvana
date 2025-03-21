@@ -1,0 +1,220 @@
+/* 90년대 인터넷 익스플로러 스타일 */
+
+.retro-ie {
+    font-family: 'Arial', 'Tahoma', 'Microsoft Sans Serif', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  .retro-ie-window {
+    background-color: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #888888;
+    border-bottom: 2px solid #888888;
+  }
+  
+  .retro-ie-header {
+    background: linear-gradient(to right, #c0c0c0, #d8d8d8);
+    padding: 2px 3px;
+    display: flex;
+    align-items: center;
+    height: 22px;
+  }
+  
+  .retro-ie-menubar {
+    background-color: #c0c0c0;
+    border-bottom: 1px solid #888888;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 2px;
+  }
+  
+  .retro-ie-toolbar {
+    background-color: #c0c0c0;
+    border-bottom: 1px solid #888888;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    padding: 1px 2px;
+  }
+  
+  .retro-ie-addressbar {
+    background-color: #c0c0c0;
+    border-bottom: 1px solid #888888;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    padding: 1px 2px;
+  }
+  
+  .retro-ie-button {
+    background-color: #c0c0c0;
+    border-top: 1px solid #ffffff;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #404040;
+    border-bottom: 1px solid #404040;
+    padding: 2px 8px;
+    margin: 0 2px;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  
+  .retro-ie-button:active {
+    border-top: 1px solid #404040;
+    border-left: 1px solid #404040;
+    border-right: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    background-color: #b0b0b0;
+  }
+  
+  .retro-ie-toolbar-button {
+    background-color: #c0c0c0;
+    border-top: 1px solid #ffffff;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #404040;
+    border-bottom: 1px solid #404040;
+    width: 48px;
+    height: 34px;
+    padding: 4px 0;
+    margin: 0 1px;
+    text-align: center;
+    font-size: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .retro-ie-toolbar-button:active {
+    border-top: 1px solid #404040;
+    border-left: 1px solid #404040;
+    border-right: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    background-color: #b0b0b0;
+  }
+  
+  .retro-ie-address-input {
+    flex: 1;
+    height: 20px;
+    border-top: 1px solid #404040;
+    border-left: 1px solid #404040;
+    border-right: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    background-color: #ffffff;
+    padding: 1px 4px;
+    font-size: 12px;
+  }
+  
+  .retro-ie-content {
+    background-color: #ffffff;
+    width: 100%;
+    flex: 1;
+    overflow: auto;
+    border-top: 1px solid #404040;
+    border-left: 1px solid #404040;
+    border-right: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+  }
+  
+  .retro-ie-statusbar {
+    background-color: #c0c0c0;
+    height: 20px;
+    border-top: 1px solid #888888;
+    display: flex;
+    align-items: center;
+    padding: 0 2px;
+    font-size: 11px;
+  }
+  
+  .retro-ie-statusbox {
+    border-top: 1px solid #404040;
+    border-left: 1px solid #404040;
+    border-right: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    height: 16px;
+    padding: 0 4px;
+    margin-right: 2px;
+    display: flex;
+    align-items: center;
+    background-color: #c0c0c0;
+  }
+  
+  .retro-ie-menu-item {
+    padding: 0 8px;
+    cursor: pointer;
+  }
+  
+  .retro-ie-menu-item:hover {
+    text-decoration: underline;
+  }
+  
+  /* 레트로 링크 스타일 */
+  .retro-link {
+    color: blue;
+    text-decoration: none;
+  }
+  
+  .retro-link:visited {
+    color: purple;
+  }
+  
+  .retro-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* 전형적인 90년대 테이블 스타일 */
+  .retro-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .retro-table td {
+    padding: 4px;
+    vertical-align: top;
+  }
+  
+  .retro-section {
+    background-color: #90EE90; /* 연한 녹색 */
+    padding: 10px;
+    margin-bottom: 1px;
+  }
+  
+  .retro-section-blue {
+    background-color: #87CEEB; /* 연한 파란색 */
+    padding: 10px;
+    margin-bottom: 1px;
+  }
+  
+  .retro-google-logo {
+    display: block;
+    margin: 20px auto;
+    max-width: 80%;
+  }
+  
+  .retro-search-box {
+    background-color: #EFEFEF;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 1px;
+  }
+  
+  .retro-input {
+    border: 1px solid #404040;
+    padding: 4px;
+    width: 60%;
+  }
+  
+  .retro-button {
+    border-top: 1px solid #ffffff;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #404040;
+    border-bottom: 1px solid #404040;
+    background-color: #c0c0c0;
+    padding: 2px 10px;
+    margin: 0 2px;
+    cursor: pointer;
+  }

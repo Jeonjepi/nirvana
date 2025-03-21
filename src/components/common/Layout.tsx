@@ -1,5 +1,4 @@
 import React from 'react';
-import PageHeader from './PageHeader';
 import { LayoutProps } from '@/types';
 
 const Layout: React.FC<LayoutProps> = ({ 
