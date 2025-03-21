@@ -1,45 +1,41 @@
 import React from 'react';
-import Wallpaper from '../components/Wallpaper';
-import DesktopIcon from '../components/DesktopIcon';
-import { SideIcon, FolderIcon } from '../components/Icons';
+import Layout from '../components/common/Layout';
+import NavButton from '../components/common/NavButton';
+import IconMessage from '../components/home/IconMessage';
+import { PageType } from '@/types';
+import { PAGE_SUBTITLE } from '@/utils/constant';
 
 const HomePage: React.FC = () => {
-  return (
-    <div className="app-container">
-      <Wallpaper>
-        {/* Side 페이지로 이동하는 아이콘 */}
-        <DesktopIcon 
-          icon={<SideIcon />} 
-          label="Side Page" 
-          to="/side" 
-          position={{ x: 1, y: 1 }} 
-        />
-        
-        {/* 추가 아이콘들 (기능 없음, 장식용) */}
-        <DesktopIcon 
-          icon={<FolderIcon />} 
-          label="Documents" 
-          to="/" 
-          position={{ x: 1, y: 2 }} 
-        />
-        
-        <DesktopIcon 
-          icon={<FolderIcon />} 
-          label="Pictures" 
-          to="/" 
-          position={{ x: 1, y: 3 }} 
-        />
+  // 이미지에 표시된 메시지
+  const dolphinMessage = [
+    "절대",
+    "바이러스",
+    "아닙니다.",
+    "믿어",
+    "주세요... 전",
+    "돌고래입니",
+    "다."
+  ];
 
-        {/* Tailwind CSS 4의 특성을 활용한 아이콘 */}
-        <DesktopIcon 
-          icon={<FolderIcon className="text-yellow-300" />} 
-          label="Music" 
-          to="/" 
-          position={{ x: 1, y: 4 }} 
-          className="hover:(scale-105 bg-blue-500/10) transition-all"
+  return (
+    <Layout
+      pageNumber={PageType.HOME}
+      pageTitle="메인인트로"
+      pageSubtitle={PAGE_SUBTITLE}
+    >
+      <div className="flex flex-col items-center justify-center min-h-[50vh]">
+        <IconMessage 
+          message={dolphinMessage} 
+          icon="/assets/icons/windows.png" 
+          alternateText="돌고래"
+          width="80px" // 원하는 너비 값을 전달
         />
-      </Wallpaper>
-    </div>
+        
+        <div className="mt-16 flex justify-end w-full">
+          <NavButton targetPage={PageType.SERVER_INTRO} />
+        </div>
+      </div>
+    </Layout>
   );
 };
 

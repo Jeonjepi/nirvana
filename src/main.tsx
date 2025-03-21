@@ -1,10 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css'
+import App from './App.tsx'
+import './styles/custom-fonts.css' // 폰트 CSS 임포트
+import './styles/index.css'
+import { BrowserRouter } from 'react-router-dom'
+import { AppProvider } from './contexts/AppContext.tsx'
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    {/* <App /> */}
-    해 탈 컴 퍼 니 comming soon
+    <BrowserRouter>
+      <AppProvider>
+        <App />
+      </AppProvider>
+    </BrowserRouter>
   </React.StrictMode>,
 )

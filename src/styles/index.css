@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply m-0 p-0 font-sans text-gray-800;
+  }
+}
+
+@layer components {
+  .page-container {
+    @apply flex flex-col items-center justify-start min-h-screen p-6 max-w-4xl mx-auto;
+  }
+  
+  .page-header {
+    @apply flex flex-col items-start w-full mb-8;
+  }
+  
+  .page-title {
+    @apply text-xl font-bold mb-2;
+  }
+  
+  .page-subtitle {
+    @apply text-lg font-medium;
+  }
+  
+  .nav-button {
+    @apply px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors;
+  }
+}
