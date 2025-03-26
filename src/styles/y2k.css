@@ -1,0 +1,211 @@
+/* Y2K 스타일 CSS */
+
+@keyframes rainbow-text {
+    0% { color: red; }
+    14% { color: orange; }
+    28% { color: yellow; }
+    42% { color: green; }
+    57% { color: blue; }
+    71% { color: indigo; }
+    85% { color: violet; }
+    100% { color: red; }
+  }
+  
+  @keyframes rainbow-bg {
+    0% { background-color: rgba(255, 0, 0, 0.3); }
+    14% { background-color: rgba(255, 165, 0, 0.3); }
+    28% { background-color: rgba(255, 255, 0, 0.3); }
+    42% { background-color: rgba(0, 128, 0, 0.3); }
+    57% { background-color: rgba(0, 0, 255, 0.3); }
+    71% { background-color: rgba(75, 0, 130, 0.3); }
+    85% { background-color: rgba(238, 130, 238, 0.3); }
+    100% { background-color: rgba(255, 0, 0, 0.3); }
+  }
+  
+  @keyframes star-twinkle {
+    0% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0.2; transform: scale(0.8); }
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes pulse-glow {
+    0% { filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.7)); }
+    50% { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1)); }
+    100% { filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.7)); }
+  }
+  
+  .y2k-window {
+    font-family: 'MS Sans Serif', 'Arial', sans-serif;
+    background-color: #c0c0c0;
+    border: 2px solid #dfdfdf;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .y2k-header {
+    background: linear-gradient(to right, #0066cc, #66ccff);
+    color: white;
+    padding: 2px 4px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .y2k-buttons button {
+    width: 16px;
+    height: 16px;
+    margin-left: 2px;
+    background-color: #c0c0c0;
+    border: 1px solid white;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    font-size: 10px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .y2k-toolbar {
+    background-color: #c0c0c0;
+    border-bottom: 1px solid #808080;
+    padding: 2px 4px;
+    font-size: 11px;
+  }
+  
+  .y2k-addressbar {
+    background-color: #c0c0c0;
+    padding: 2px 4px;
+    font-size: 11px;
+  }
+  
+  .y2k-addressbar input {
+    border: 1px inset #808080;
+    background-color: white;
+    width: 100%;
+    padding: 1px 4px;
+    font-size: 11px;
+  }
+  
+  .y2k-content {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .y2k-rainbow-text {
+    animation: rainbow-text 3s linear infinite;
+    font-weight: bold;
+  }
+  
+  .y2k-rainbow-bg {
+    animation: rainbow-bg 5s linear infinite;
+    border-radius: 50%;
+  }
+  
+  .y2k-star {
+    color: white;
+    position: absolute;
+    animation: star-twinkle 3s infinite;
+  }
+  
+  .y2k-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .y2k-glow {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6;
+  }
+  
+  .y2k-button {
+    background: linear-gradient(to bottom, #f0f0f0, #c0c0c0);
+    border: 2px solid #ffffff;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    padding: 2px 10px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .y2k-button:active {
+    border: 2px solid #808080;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
+    background: #c0c0c0;
+  }
+  
+  .y2k-rainbow-button {
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    color: white;
+    border: 2px solid white;
+    text-shadow: 1px 1px 2px black;
+    padding: 3px 12px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .y2k-rainbow-gradient {
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  }
+  
+  .y2k-dolphin {
+    filter: drop-shadow(0 0 5px rgba(0, 123, 255, 0.7));
+    animation: float 5s ease-in-out infinite;
+  }
+  
+  .y2k-lotus {
+    filter: drop-shadow(0 0 5px rgba(255, 105, 180, 0.7));
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  
+  .y2k-sunburst {
+    background: radial-gradient(circle, white 0%, rgba(255, 255, 255, 0.8) 30%, rgba(255, 255, 255, 0) 70%);
+    animation: spin 20s linear infinite;
+  }
+  
+  .y2k-wish-ball {
+    background: radial-gradient(circle at center, #ff3399, #ff6600, #ffcc00, #33cc33, #3399ff, #9933ff);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  .y2k-background {
+    background: linear-gradient(to bottom, #003399, #0066cc, #99ccff);
+  }
+  
+  .y2k-start-button {
+    background: linear-gradient(to bottom, #009900, #006600);
+    color: white;
+    font-weight: bold;
+    border: 2px solid #ffffff;
+    border-right-color: #003300;
+    border-bottom-color: #003300;
+    padding: 1px 8px;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  
+  .y2k-taskbar {
+    background: linear-gradient(to right, #0055aa, #0099ff);
+    border-top: 1px solid #003366;
+    padding: 2px;
+  }
+  
+  /* 불투명한 효과 */
+  .y2k-glass {
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }

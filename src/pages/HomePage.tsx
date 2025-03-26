@@ -30,10 +30,10 @@ const HomePage: React.FC = () => {
           alternateText="돌고래"
           width="80px" // 원하는 너비 값을 전달
         />
-{/*         
+        
         <div className="mt-16 flex justify-end w-full">
           <NavButton targetPage={PageType.SERVER_INTRO} />
-        </div> */}
+        </div>
       </div>
     </Layout>
   );
