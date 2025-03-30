@@ -6,8 +6,8 @@ import HomePage from './pages/HomePage';
 import { PAGE_ROUTES } from './utils/constant';
 import ServerIntroPage from './pages/ServerIntroPage';
 import SocialPage from './pages/SocialPage';
-import CommunityPage from './pages/CommunityPage';
 import MeditationPage from './pages/MeditationPage';
+import LoadingPage from './pages/LodingPage';
 
 function App() {
   const { currentPage } = useAppContext();
@@ -27,9 +27,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/server-intro" element={<ServerIntroPage />} />
         <Route path="/social" element={<SocialPage />} />
-        <Route path="/community" element={<CommunityPage />} />
         <Route path="/meditation" element={<MeditationPage />} />
-
+        <Route path="/loading" element={<LoadingPage />} />
       </Routes>
     </div>
   );

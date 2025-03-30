@@ -28,7 +28,7 @@ const IconMessage: React.FC<IconMessageProps> = ({
         onClick={handleClick}
         style={{ width }}
       >
-        {/* 돌고래 이미지 영역 */}
+        {/* 부처 이미지 영역 */}
         <div className="relative w-full h-20 flex justify-center items-center bg-transparent">
           <img 
             src={icon} 

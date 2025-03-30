@@ -3,10 +3,8 @@ export enum PageType {
   HOME = 1,
   SERVER_INTRO = 2,
   SOCIAL = 3,
-  COMMUNITY = 4,
-  MEDITATION = 5,
-  TEACHINGS = 6,
-  PROFILE = 7
+  MEDITATION = 4,
+  LOADING = 5,
 }
 
 // AppContext types

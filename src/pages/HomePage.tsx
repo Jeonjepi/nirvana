@@ -1,39 +1,35 @@
 import React from 'react';
-import Layout from '../components/common/Layout';
-import NavButton from '../components/common/NavButton';
-import IconMessage from '../components/home/IconMessage';
+import Layout from '@/components/common/Layout';
+import ImageButton from '@/components/features/home/ImageButton';
+import { useNavigation } from '@/hooks/useNavigation';
 import { PageType } from '@/types';
 import { PAGE_SUBTITLE } from '@/utils/constant';
 
 const HomePage: React.FC = () => {
-  // 이미지에 표시된 메시지
-  const dolphinMessage = [
-    "절대",
-    "바이러스",
-    "아닙니다.",
-    "믿어",
-    "주세요... 전",
-    "부처 입니",
-    "다."
-  ];
-
+  const { goToPage } = useNavigation();
+  
+  const handleNavigate = () => {
+    goToPage(PageType.SERVER_INTRO);
+  };
+  
   return (
     <Layout
       pageNumber={PageType.HOME}
       pageTitle="메인인트로"
       pageSubtitle={PAGE_SUBTITLE}
     >
-      <div className="flex flex-col items-center justify-center min-h-[50vh]">
-        <IconMessage 
-          message={dolphinMessage} 
-          icon="/assets/images/bud.png" 
-          alternateText="돌고래"
-          width="80px" // 원하는 너비 값을 전달
+      <div 
+        className="flex flex-col items-center justify-center min-h-screen w-full bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/assets/images/background_1.png')" }}
+      >
+        <ImageButton 
+          defaultImage="/assets/images/buddha_icon_default.png"
+          variantImage="/assets/images/buddha_icon_variant.png"
+          alt="클릭하여 다음 페이지로 이동"
+          width="160px"
+          onNavigate={handleNavigate}
+          className="rounded-md overflow-hidden hover:shadow-xl transition-shadow"
         />
-        
-        <div className="mt-16 flex justify-end w-full">
-          <NavButton targetPage={PageType.SERVER_INTRO} />
-        </div>
       </div>
     </Layout>
   );

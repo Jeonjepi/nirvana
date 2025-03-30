@@ -12,8 +12,7 @@ export const PAGE_ROUTES: Record<PageType, string> = {
   [PageType.SOCIAL]: '/social',
   [PageType.COMMUNITY]: '/community',
   [PageType.MEDITATION]: '/meditation',
-  [PageType.TEACHINGS]: '/teachings',
-  [PageType.PROFILE]: '/profile'
+  [PageType.LOADING]: '/loading',
 };
 
 // Page titles

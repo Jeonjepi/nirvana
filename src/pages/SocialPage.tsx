@@ -1,34 +1,182 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '@/components/common/Layout';
-import NavButton from '@/components/common/NavButton';
-import CloudBackground from '@/components/social/CloudBackgroud';
-import MessageDisplay from '@/components/social/MessageDisplay';
 import { PageType } from '@/types';
 import { PAGE_SUBTITLE } from '@/utils/constant';
+import { useAppContext } from '@/contexts/AppContext';
 import '@/styles/custom-fonts.css'; // 폰트 CSS 불러오기
 
+// 버블 컴포넌트 정의
+interface Bubble {
+  id: number;
+  left: number;
+  top: number;
+  size: number;
+  speed: number;
+  delay: number;
+}
+
 const SocialPage: React.FC = () => {
+  const { setCurrentPage } = useAppContext(); // AppContext에서 setCurrentPage 가져오기
+  const [bubbles, setBubbles] = useState<Bubble[]>([]);
+
+  // 페이지 로드 시 버블 생성
+  useEffect(() => {
+    const numberOfBubbles = 12; // 버블 개수
+    const newBubbles: Bubble[] = [];
+
+    for (let i = 0; i < numberOfBubbles; i++) {
+      newBubbles.push({
+        id: i,
+        left: Math.random() * 100, // 화면의 랜덤한 x 위치 (%)
+        top: Math.random() * 100, // 화면의 랜덤한 y 위치 (%)
+        size: 40 + Math.random() * 60, // 버블 크기 (40px~100px)로 증가
+        speed: 15 + Math.random() * 25, // 애니메이션 속도 (15s~40s)
+        delay: Math.random() * 10, // 시작 딜레이 (0s~10s)
+      });
+    }
+
+    setBubbles(newBubbles);
+  }, []);
+
   return (
     <Layout
       pageNumber={PageType.SOCIAL}
       pageTitle="소개페이지"
       pageSubtitle={PAGE_SUBTITLE}
     >
-      <div className="flex flex-col items-center gap-8 font-sam3kr">
-        <div className="flex w-full justify-between">
-          {/* Left side - Cloud background with Chinese message */}
-          <div className="w-1/2 pr-4">
-            <CloudBackground />
+      {/* 애니메이션 CSS */}
+      <style jsx global>{`
+        @keyframes float {
+          0% {
+            transform: translateY(0) translateX(0) rotate(0deg);
+          }
+          25% {
+            transform: translateY(-20px) translateX(10px) rotate(5deg);
+          }
+          50% {
+            transform: translateY(0) translateX(20px) rotate(0deg);
+          }
+          75% {
+            transform: translateY(20px) translateX(10px) rotate(-5deg);
+          }
+          100% {
+            transform: translateY(0) translateX(0) rotate(0deg);
+          }
+        }
+        
+        /* 아이폰 16 대응을 위한 스타일 */
+        html, body, #root {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          width: 100%;
+          overflow: hidden;
+        }
+      `}</style>
+
+      <div 
+        className="relative flex flex-col items-center justify-center min-h-screen w-full bg-cover bg-center bg-no-repeat overflow-hidden"
+        style={{ 
+          backgroundImage: "url('/assets/images/background_1.png')",
+          height: "100vh", // 화면 높이 100%
+          width: "100vw", // 화면 너비 100%
+          maxWidth: "100%",
+          paddingBottom: "64px" // NEXT 버튼 위한 공간 확보
+        }}
+      >
+        {/* 떠다니는 버블들 */}
+        {bubbles.map((bubble) => (
+          <div
+            key={bubble.id}
+            className="absolute pointer-events-none z-10"
+            style={{
+              left: `${bubble.left}%`,
+              top: `${bubble.top}%`,
+              width: `${bubble.size}px`,
+              height: `${bubble.size}px`,
+              animation: `float ${bubble.speed}s infinite ease-in-out ${bubble.delay}s`,
+              opacity: 0.8, // 투명도 살짝 증가
+            }}
+          >
+            <img
+              src="/assets/images/bubble.png"
+              alt="bubble"
+              className="w-full h-full object-contain"
+            />
           </div>
+        ))}
+        
+        {/* 텍스트 영역 - 오른쪽 정렬 */}
+        <div className="relative z-10 flex flex-col items-end justify-center px-8 py-8 w-full max-w-lg text-right text-red-600 font-sam3kr">
+          <p className="mb-6 text-3xl">불기 3mm년...</p>
           
-          {/* Right side - Korean message content */}
-          <div className="w-1/2 flex flex-col text-right">
-            <MessageDisplay />
-          </div>
+          <p className="mb-4 text-2xl">
+            북쪽나라 0과 1의 디지털 <br/>
+            사바세계에도 화현하시니...
+          </p>
+          
+          <p className="mb-4 text-2xl">
+            3~4년이 지나도 <br/>
+            중생의 고통과 행복,, <br/>
+            그리고 게임을을 <br/>
+            탐한 욕망점음은 <br/>
+            끝이지 않았고
+          </p>
+          
+          <p className="mb-4 text-2xl">
+            24세기, 메타버스의 <br/>
+            프로젝트와 함께 <br/>
+            그 교량이 이어졌다.
+          </p>
+          
+          <p className="mb-4 text-2xl">
+            디지털 사바세계에 <br/>
+            화현하신 부처님.
+          </p>
+          
+          <p className="mb-4 text-2xl">
+            우리 중생들은 <br/>
+            무지님을 본다면 <br/>
+            가장 먼저 무엇을 <br/>
+            하고 싶을까?
+          </p>
         </div>
         
-        <div className="flex justify-end w-full mt-8">
-          <NavButton targetPage={PageType.COMMUNITY} text="NEXT" />
+        {/* NEXT 버튼 */}
+        <div className="absolute bottom-4 right-4 z-20">
+          <button 
+            onClick={() => {
+              // AppContext를 사용하여 다음 페이지로 이동
+              setCurrentPage(PageType.MEDITATION);
+            }}
+            className="flex items-center justify-center"
+            onMouseDown={(e) => {
+              // 마우스 클릭 시 이미지 변경
+              e.currentTarget.querySelector('img').src = '/assets/images/next_button_2.png';
+            }}
+            onMouseUp={(e) => {
+              // 마우스 클릭 해제 시 이미지 원복
+              e.currentTarget.querySelector('img').src = '/assets/images/next_button.png';
+            }}
+            onMouseLeave={(e) => {
+              // 마우스가 버튼 영역을 벗어날 때 이미지 원복
+              e.currentTarget.querySelector('img').src = '/assets/images/next_button.png';
+            }}
+            onTouchStart={(e) => {
+              // 터치 시작 시 이미지 변경 (모바일 대응)
+              e.currentTarget.querySelector('img').src = '/assets/images/next_button_2.png';
+            }}
+            onTouchEnd={(e) => {
+              // 터치 종료 시 이미지 원복 (모바일 대응)
+              e.currentTarget.querySelector('img').src = '/assets/images/next_button.png';
+            }}
+          >
+            <img 
+              src="/assets/images/next_button.png" 
+              alt="NEXT" 
+              className="w-24 h-auto"
+            />
+          </button>
         </div>
       </div>
     </Layout>
