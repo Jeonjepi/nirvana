@@ -115,8 +115,8 @@ const ServerIntroPage: React.FC = () => {
         <div className="w-full flex items-center justify-center mt-8">
           <img
             src="/assets/images/heatalcompany_logo_2.png"
-            alt="해탈컴퍼니108홀딩스"
-            className="h-20 w-auto"
+            alt="해탈컴퍼니108"
+            className="h-15 w-auto"
           />
         </div>
 
@@ -176,7 +176,7 @@ const ServerIntroPage: React.FC = () => {
                   <img
                     src="/assets/images/buddhai.gif"
                     alt="Buddha Logo"
-                    className="h-32 w-auto" // 높이 증가 h-24 -> h-32
+                    className="h-24 w-auto" // 높이 증가 h-24 -> h-32
                   />
                 </div>
 

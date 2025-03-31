@@ -182,7 +182,7 @@ const MeditationPage: React.FC = () => {
         </div> */}
         
         {/* 하단부 - 기도하는 손 */}
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-center mb-12">
           <img 
             src="/assets/images/hand.gif" 
             alt="Praying Hands"
@@ -191,7 +191,7 @@ const MeditationPage: React.FC = () => {
         </div>
 
         {/* NEXT 버튼 - 재사용 가능한 컴포넌트로 리팩토링 */}
-        <div className="absolute bottom-4 right-4 z-20">
+        <div className="absolute bottom-4 right-4 z-20 mb-10">
           <NavigationButton 
             targetPage={PageType.LOADING}
             // disabled={isSubmitting} 

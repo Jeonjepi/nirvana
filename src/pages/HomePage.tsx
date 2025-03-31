@@ -26,7 +26,7 @@ const HomePage: React.FC = () => {
           defaultImage="/assets/images/buddha_icon_default.png"
           variantImage="/assets/images/buddha_icon_variant.png"
           alt="클릭하여 다음 페이지로 이동"
-          width="160px"
+          width="120px" // 원래 160px에서 120px로 변경했습니다
           onNavigate={handleNavigate}
           className="rounded-md overflow-hidden hover:shadow-xl transition-shadow"
         />
