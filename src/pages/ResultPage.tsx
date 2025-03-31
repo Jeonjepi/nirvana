@@ -97,7 +97,7 @@ const ResultPage: React.FC = () => {
               {/* 해/달/견/과 타이틀 */}
               <div className="bg-gradient-to-r from-purple-500 via-blue-500 to-green-500 p-3 rounded-lg border-2 border-white">
                 <img 
-                  src="/assets/images/title.png" 
+                  src="/assets/images/heatalcompany_logo_2.png" 
                   alt="해/달/견/과" 
                   className="h-8 w-auto"
                 />
@@ -116,7 +116,6 @@ const ResultPage: React.FC = () => {
         {/* 중앙부 - 소원 결과 메시지 */}
         <div className="flex flex-col items-center justify-center mt-4 px-6 text-center">
           <p className="text-white text-xl font-sam3kr mb-2">당신의 소원은 이미 이루어졌습니다.</p>
-          <p className="text-white text-xl font-sam3kr">다만 인연에 따라 언젠 볼 뿐...</p>
         </div>
         
         {/* 하단부 - 빛나는 손과 버튼들 */}

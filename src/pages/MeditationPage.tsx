@@ -130,20 +130,17 @@ const MeditationPage: React.FC = () => {
         <div className="flex-grow"></div>
         
         {/* 중앙부 - 말풍선과 소원 입력 */}
-        <div className="flex flex-col items-center justify-center px-4 mb-4">
+        {/* <div className="flex flex-col items-center justify-center px-4 mb-4">
           <div className="relative">
-            {/* 말풍선 이미지 */}
             <img 
               src="/assets/images/말풍선.gif" 
               alt="Speech Bubble" 
               className="w-full max-w-md"
             />
             
-            {/* 말풍선 내용 */}
             <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
               <h2 className="text-xl font-bold text-black mb-2 font-sam3kr">어떤 소원을 빌까?</h2>
               
-              {/* 텍스트 입력 영역 */}
               <input
                 type="text"
                 value={wishText}
@@ -157,7 +154,6 @@ const MeditationPage: React.FC = () => {
                 disabled={isSubmitting}
               />
               
-              {/* 소원 버튼들 */}
               <div className="flex flex-row gap-4 mt-2 w-full justify-center">
                 <button 
                   className={cn(
@@ -184,10 +180,10 @@ const MeditationPage: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         
         {/* 하단부 - 기도하는 손 */}
-        <div className="w-full flex justify-center mb-8">
+        <div className="w-full flex justify-center">
           <img 
             src="/assets/images/hand.gif" 
             alt="Praying Hands"

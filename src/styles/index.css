@@ -12,7 +12,7 @@
 
 @layer components {
   .page-container {
-    @apply flex flex-col items-center justify-start min-h-screen p-6 max-w-4xl mx-auto;
+    @apply flex flex-col items-center justify-start min-h-screen max-w-4xl mx-auto;
   }
   
   .page-header {
