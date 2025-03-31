@@ -1,13 +1,71 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '@/components/common/Layout';
 import { PageType } from '@/types';
 import { PAGE_SUBTITLE } from '@/utils/constant';
 import { useAppContext } from '@/contexts/AppContext';
+import NavigationButton from '@/components/common/NavigationButton';
+import { cn } from '@/utils/cn';
 import '@/styles/custom-fonts.css'; // 폰트 CSS 불러오기
 
+// 글로벌 스타일을 적용하기 위한 함수
+const applyGlobalStyles = () => {
+  // 이미 존재하는 스타일 태그가 있는지 확인
+  const existingStyle = document.getElementById('meditation-page-styles');
+  if (existingStyle) return;
+
+  // 새 스타일 태그 생성 및 추가
+  const styleTag = document.createElement('style');
+  styleTag.id = 'meditation-page-styles';
+  styleTag.innerHTML = `
+    html, body, #root {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+  `;
+  document.head.appendChild(styleTag);
+};
+
 const MeditationPage: React.FC = () => {
-  const { setCurrentPage } = useAppContext(); // AppContext에서 setCurrentPage 가져오기
-  const [wishText, setWishText] = useState(''); // 소원 텍스트 상태 관리
+  const { setCurrentPage } = useAppContext();
+  const [wishText, setWishText] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // 컴포넌트가 마운트될 때 글로벌 스타일 적용
+  useEffect(() => {
+    applyGlobalStyles();
+    
+    return () => {
+      const styleTag = document.getElementById('meditation-page-styles');
+      if (styleTag) {
+        document.head.removeChild(styleTag);
+      }
+    };
+  }, []);
+  
+  // 소원 확인 처리
+  const handleConfirmWish = () => {
+    if (wishText.trim()) {
+      setIsSubmitting(true);
+      
+      // 소원 텍스트를 localStorage에 저장
+      localStorage.setItem('userWish', wishText);
+      
+      // 소원 제출 완료 후 로딩 페이지로 이동 (잠시 지연 후)
+      setTimeout(() => {
+        setCurrentPage(PageType.LOADING);
+      }, 500);
+    } else {
+      alert('소원을 입력해주세요.');
+    }
+  };
+
+  // 소원 취소 처리
+  const handleCancelWish = () => {
+    setWishText('');
+  };
   
   return (
     <Layout
@@ -15,20 +73,12 @@ const MeditationPage: React.FC = () => {
       pageTitle="소원 빌기"
       pageSubtitle={PAGE_SUBTITLE}
     >
-      {/* 아이폰 16 대응을 위한 스타일 */}
-      <style jsx global>{`
-        html, body, #root {
-          margin: 0;
-          padding: 0;
-          height: 100%;
-          width: 100%;
-          overflow: hidden;
-        }
-      `}</style>
-
       {/* 전체 컨테이너 - 우주 배경 */}
       <div 
-        className="relative flex flex-col items-center justify-between min-h-screen w-full bg-cover bg-center bg-no-repeat overflow-hidden"
+        className={cn(
+          "relative flex flex-col items-center justify-between",
+          "min-h-screen w-full bg-cover bg-center bg-no-repeat overflow-hidden"
+        )}
         style={{ 
           backgroundImage: "url('/assets/images/background_2.png')",
           height: "100vh",
@@ -37,47 +87,39 @@ const MeditationPage: React.FC = () => {
           backgroundColor: "#000", // 우주 배경 기본 색상
         }}
       >
- {/* 상단부 - 부처님 로고 (세 개의 개별 에셋) */}
+        {/* 상단부 - 부처님 로고 (세 개의 개별 에셋) */}
         <div className="w-full flex items-center justify-center mt-8">
-          <div className="relative rounded-lg overflow-hidden" style={{ width: '80%', maxWidth: '360px' }}>
+          <div className="relative rounded-lg overflow-hidden" style={{ width: '90%', maxWidth: '420px' }}>
             {/* 배경 이미지 */}
-            <div className="relative bg-blue-300 p-2 rounded-lg overflow-hidden w-full">
-              <img 
+            <div className="relative p-2 rounded-lg overflow-hidden w-full">
+              {/* <img 
                 src="/assets/images/cloud_background.png" 
                 alt="Cloud Background" 
                 className="w-full h-auto absolute inset-0 object-cover"
               />
-              
+               */}
               <div className="flex items-center justify-center relative z-10 py-2">
                 {/* 왼쪽 촛불 */}
                 <img 
-                  src="/assets/images/candle.png" 
+                  src="/assets/images/candle.gif" 
                   alt="candle" 
-                  className="h-16 w-auto mr-4"
+                  className="h-24 w-auto mr-6" // 높이 증가 h-16 -> h-24, 여백 증가 mr-4 -> mr-6
                 />
                 
                 {/* 부처님 이미지 */}
                 <div className="relative">
                   <img 
-                    src="/assets/images/buddha_logo.png" 
+                    src="/assets/images/buddhai.gif" 
                     alt="Buddha Logo" 
-                    className="h-24 w-auto"
+                    className="h-32 w-auto" // 높이 증가 h-24 -> h-32
                   />
-                  {/* 빛나는 효과 (선택적) */}
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4">
-                    <img 
-                      src="/assets/images/light_effect.png" 
-                      alt="Light" 
-                      className="h-8 w-auto opacity-80"
-                    />
-                  </div>
                 </div>
                 
                 {/* 오른쪽 촛불 */}
                 <img 
-                  src="/assets/images/candle.png" 
+                  src="/assets/images/candle.gif" 
                   alt="candle" 
-                  className="h-16 w-auto ml-4"
+                  className="h-24 w-auto ml-6" // 높이 증가 h-16 -> h-24, 여백 증가 ml-4 -> ml-6
                 />
               </div>
             </div>
@@ -107,24 +149,35 @@ const MeditationPage: React.FC = () => {
                 value={wishText}
                 onChange={(e) => setWishText(e.target.value)}
                 placeholder="(예시 텍스트)"
-                className="w-full bg-white p-2 mb-4 text-black font-sam3kr rounded border border-gray-300 focus:outline-none"
+                className={cn(
+                  "w-full bg-white p-2 mb-4 text-black font-sam3kr rounded",
+                  "border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300",
+                  { "opacity-50": isSubmitting }
+                )}
+                disabled={isSubmitting}
               />
               
               {/* 소원 버튼들 */}
               <div className="flex flex-row gap-4 mt-2 w-full justify-center">
                 <button 
-                  className="border-2 border-black rounded-lg px-6 py-1 bg-yellow-100 hover:bg-yellow-200 font-sam3kr"
-                  onClick={() => setWishText('')}
+                  className={cn(
+                    "border-2 border-black rounded-lg px-6 py-1 font-sam3kr transition-colors",
+                    "bg-yellow-100 hover:bg-yellow-200 active:bg-yellow-300",
+                    { "opacity-50 cursor-not-allowed": isSubmitting }
+                  )}
+                  onClick={handleCancelWish}
+                  disabled={isSubmitting}
                 >
                   취소(X)
                 </button>
                 <button 
-                  className="border-2 border-black rounded-lg px-6 py-1 bg-yellow-100 hover:bg-yellow-200 font-sam3kr"
-                  onClick={() => {
-                    // 소원 확인 처리
-                    alert(`소원 "${wishText}"이(가) 등록되었습니다.`);
-                    setWishText('');
-                  }}
+                  className={cn(
+                    "border-2 border-black rounded-lg px-6 py-1 font-sam3kr transition-colors",
+                    "bg-yellow-100 hover:bg-yellow-200 active:bg-yellow-300",
+                    { "opacity-50 cursor-not-allowed": isSubmitting }
+                  )}
+                  onClick={handleConfirmWish}
+                  disabled={isSubmitting}
                 >
                   확인(O)
                 </button>
@@ -138,45 +191,16 @@ const MeditationPage: React.FC = () => {
           <img 
             src="/assets/images/hand.gif" 
             alt="Praying Hands"
-            className="w-48 h-auto object-contain" 
+            className="w-80 h-auto object-contain" // 너비 증가 w-64 -> w-80
           />
         </div>
 
-        {/* NEXT 버튼 - 필요한 경우 */}
+        {/* NEXT 버튼 - 재사용 가능한 컴포넌트로 리팩토링 */}
         <div className="absolute bottom-4 right-4 z-20">
-          <button 
-            onClick={() => {
-              // AppContext를 사용하여 다음 페이지로 이동
-              setCurrentPage(PageType.LOADING);
-            }}
-            className="flex items-center justify-center"
-            onMouseDown={(e) => {
-              // 마우스 클릭 시 이미지 변경
-              e.currentTarget.querySelector('img').src = '/assets/images/next_button_2.png';
-            }}
-            onMouseUp={(e) => {
-              // 마우스 클릭 해제 시 이미지 원복
-              e.currentTarget.querySelector('img').src = '/assets/images/next_button.png';
-            }}
-            onMouseLeave={(e) => {
-              // 마우스가 버튼 영역을 벗어날 때 이미지 원복
-              e.currentTarget.querySelector('img').src = '/assets/images/next_button.png';
-            }}
-            onTouchStart={(e) => {
-              // 터치 시작 시 이미지 변경 (모바일 대응)
-              e.currentTarget.querySelector('img').src = '/assets/images/next_button_2.png';
-            }}
-            onTouchEnd={(e) => {
-              // 터치 종료 시 이미지 원복 (모바일 대응)
-              e.currentTarget.querySelector('img').src = '/assets/images/next_button.png';
-            }}
-          >
-            <img 
-              src="/assets/images/next_button.png" 
-              alt="NEXT" 
-              className="w-24 h-auto"
-            />
-          </button>
+          <NavigationButton 
+            targetPage={PageType.LOADING}
+            disabled={isSubmitting} 
+          />
         </div>
       </div>
     </Layout>

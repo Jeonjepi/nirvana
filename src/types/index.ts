@@ -5,6 +5,7 @@ export enum PageType {
   SOCIAL = 3,
   MEDITATION = 4,
   LOADING = 5,
+  RESULT = 6
 }
 
 // AppContext types

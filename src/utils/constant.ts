@@ -10,9 +10,9 @@ export const PAGE_ROUTES: Record<PageType, string> = {
   [PageType.HOME]: '/',
   [PageType.SERVER_INTRO]: '/server-intro',
   [PageType.SOCIAL]: '/social',
-  [PageType.COMMUNITY]: '/community',
   [PageType.MEDITATION]: '/meditation',
   [PageType.LOADING]: '/loading',
+  [PageType.RESULT]: '/result',
 };
 
 // Page titles
@@ -20,10 +20,9 @@ export const PAGE_TITLES: Record<PageType, string> = {
   [PageType.HOME]: '메인인트로',
   [PageType.SERVER_INTRO]: '서버인트로',
   [PageType.SOCIAL]: '소개페이지',
-  [PageType.COMMUNITY]: '커뮤니티',
   [PageType.MEDITATION]: '명상',
-  [PageType.TEACHINGS]: '가르침',
-  [PageType.PROFILE]: '프로필'
+  [PageType.LOADING]: '로딩',
+  [PageType.RESULT]: '결과',
 };
 
 // Common subtitle
