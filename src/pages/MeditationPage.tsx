@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {  useEffect } from 'react';
 import Layout from '@/components/common/Layout';
 import { PageType } from '@/types';
 import { PAGE_SUBTITLE } from '@/utils/constant';
-import { useAppContext } from '@/contexts/AppContext';
 import NavigationButton from '@/components/common/NavigationButton';
 import { cn } from '@/utils/cn';
 import '@/styles/custom-fonts.css'; // 폰트 CSS 불러오기
@@ -29,9 +28,9 @@ const applyGlobalStyles = () => {
 };
 
 const MeditationPage: React.FC = () => {
-  const { setCurrentPage } = useAppContext();
-  const [wishText, setWishText] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // const { setCurrentPage } = useAppContext();
+  // const [wishText, setWishText] = useState('');
+  // const [isSubmitting, setIsSubmitting] = useState(false);
   
   // 컴포넌트가 마운트될 때 글로벌 스타일 적용
   useEffect(() => {
@@ -46,26 +45,26 @@ const MeditationPage: React.FC = () => {
   }, []);
   
   // 소원 확인 처리
-  const handleConfirmWish = () => {
-    if (wishText.trim()) {
-      setIsSubmitting(true);
+  // const handleConfirmWish = () => {
+  //   if (wishText.trim()) {
+  //     setIsSubmitting(true);
       
-      // 소원 텍스트를 localStorage에 저장
-      localStorage.setItem('userWish', wishText);
+  //     // 소원 텍스트를 localStorage에 저장
+  //     localStorage.setItem('userWish', wishText);
       
-      // 소원 제출 완료 후 로딩 페이지로 이동 (잠시 지연 후)
-      setTimeout(() => {
-        setCurrentPage(PageType.LOADING);
-      }, 500);
-    } else {
-      alert('소원을 입력해주세요.');
-    }
-  };
+  //     // 소원 제출 완료 후 로딩 페이지로 이동 (잠시 지연 후)
+  //     setTimeout(() => {
+  //       setCurrentPage(PageType.LOADING);
+  //     }, 500);
+  //   } else {
+  //     alert('소원을 입력해주세요.');
+  //   }
+  // };
 
   // 소원 취소 처리
-  const handleCancelWish = () => {
-    setWishText('');
-  };
+  // const handleCancelWish = () => {
+  //   setWishText('');
+  // };
   
   return (
     <Layout
@@ -89,7 +88,7 @@ const MeditationPage: React.FC = () => {
       >
         {/* 상단부 - 부처님 로고 (세 개의 개별 에셋) */}
         <div className="w-full flex items-center justify-center mt-8">
-          <div className="relative rounded-lg overflow-hidden" style={{ width: '90%', maxWidth: '420px' }}>
+          <div className="relative rounded-lg overflow-hidden" style={{ width: '90%', maxWidth: '400px' }}>
             {/* 배경 이미지 */}
             <div className="relative p-2 rounded-lg overflow-hidden w-full">
               {/* <img 
@@ -103,7 +102,7 @@ const MeditationPage: React.FC = () => {
                 <img 
                   src="/assets/images/candle.gif" 
                   alt="candle" 
-                  className="h-24 w-auto mr-6" // 높이 증가 h-16 -> h-24, 여백 증가 mr-4 -> mr-6
+                  className="h-15 w-auto mr-6" // 높이 증가 h-16 -> h-24, 여백 증가 mr-4 -> mr-6
                 />
                 
                 {/* 부처님 이미지 */}
@@ -111,7 +110,7 @@ const MeditationPage: React.FC = () => {
                   <img 
                     src="/assets/images/buddhai.gif" 
                     alt="Buddha Logo" 
-                    className="h-32 w-auto" // 높이 증가 h-24 -> h-32
+                    className="h-12 w-auto" // 높이 증가 h-24 -> h-32
                   />
                 </div>
                 
@@ -119,7 +118,7 @@ const MeditationPage: React.FC = () => {
                 <img 
                   src="/assets/images/candle.gif" 
                   alt="candle" 
-                  className="h-24 w-auto ml-6" // 높이 증가 h-16 -> h-24, 여백 증가 ml-4 -> ml-6
+                  className="h-15 w-auto ml-6" // 높이 증가 h-16 -> h-24, 여백 증가 ml-4 -> ml-6
                 />
               </div>
             </div>
@@ -187,7 +186,7 @@ const MeditationPage: React.FC = () => {
           <img 
             src="/assets/images/hand.gif" 
             alt="Praying Hands"
-            className="w-80 h-auto object-contain" // 너비 증가 w-64 -> w-80
+            className="w-40 h-auto object-contain" // 너비 증가 w-64 -> w-80
           />
         </div>
 
@@ -195,7 +194,7 @@ const MeditationPage: React.FC = () => {
         <div className="absolute bottom-4 right-4 z-20">
           <NavigationButton 
             targetPage={PageType.LOADING}
-            disabled={isSubmitting} 
+            // disabled={isSubmitting} 
           />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Layout from '@/components/common/Layout';
 import { PageType } from '@/types';
 import { PAGE_SUBTITLE } from '@/utils/constant';
@@ -18,6 +18,7 @@ interface Bubble {
 const SocialPage: React.FC = () => {
   const { setCurrentPage } = useAppContext(); // AppContext에서 setCurrentPage 가져오기
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
+  const nextButtonRef = useRef<HTMLImageElement>(null); // 이미지 요소에 대한 참조 생성
 
   // 페이지 로드 시 버블 생성
   useEffect(() => {
@@ -38,13 +39,21 @@ const SocialPage: React.FC = () => {
     setBubbles(newBubbles);
   }, []);
 
+  // 이미지 src 변경 함수
+  const changeButtonImage = (newSrc: string) => {
+    if (nextButtonRef.current) {
+      nextButtonRef.current.src = newSrc;
+    }
+  };
+
   return (
     <Layout
       pageNumber={PageType.SOCIAL}
       pageTitle="소개페이지"
       pageSubtitle={PAGE_SUBTITLE}
     >
-      {/* 애니메이션 CSS */}
+      {/* 방법 1: @ts-ignore 사용하여 TypeScript 오류 무시 */}
+      {/* @ts-ignore */}
       <style jsx global>{`
         @keyframes float {
           0% {
@@ -156,28 +165,14 @@ const SocialPage: React.FC = () => {
               setCurrentPage(PageType.MEDITATION);
             }}
             className="flex items-center justify-center"
-            onMouseDown={(e) => {
-              // 마우스 클릭 시 이미지 변경
-              e.currentTarget.querySelector('img').src = '/assets/images/next_button_2.png';
-            }}
-            onMouseUp={(e) => {
-              // 마우스 클릭 해제 시 이미지 원복
-              e.currentTarget.querySelector('img').src = '/assets/images/next_button.png';
-            }}
-            onMouseLeave={(e) => {
-              // 마우스가 버튼 영역을 벗어날 때 이미지 원복
-              e.currentTarget.querySelector('img').src = '/assets/images/next_button.png';
-            }}
-            onTouchStart={(e) => {
-              // 터치 시작 시 이미지 변경 (모바일 대응)
-              e.currentTarget.querySelector('img').src = '/assets/images/next_button_2.png';
-            }}
-            onTouchEnd={(e) => {
-              // 터치 종료 시 이미지 원복 (모바일 대응)
-              e.currentTarget.querySelector('img').src = '/assets/images/next_button.png';
-            }}
+            onMouseDown={() => changeButtonImage('/assets/images/next_button_2.png')}
+            onMouseUp={() => changeButtonImage('/assets/images/next_button.png')}
+            onMouseLeave={() => changeButtonImage('/assets/images/next_button.png')}
+            onTouchStart={() => changeButtonImage('/assets/images/next_button_2.png')}
+            onTouchEnd={() => changeButtonImage('/assets/images/next_button.png')}
           >
             <img 
+              ref={nextButtonRef}
               src="/assets/images/next_button.png" 
               alt="NEXT" 
               className="w-24 h-auto"

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { PageType } from '@/types';
 
 const CommunityPage: React.FC = () => {
   const { setCurrentPage } = useAppContext();
-  const [wishText, setWishText] = useState<string>('');
+  // const [wishText, setWishText] = useState<string>('');
 
   const goToNextPage = () => {
     setCurrentPage(PageType.MEDITATION);

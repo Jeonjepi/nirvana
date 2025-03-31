@@ -13,7 +13,7 @@ export const useNavigation = () => {
   }, [setCurrentPage]);
   
   const goToNextPage = useCallback(() => {
-    setCurrentPage(prev => Math.min(prev + 1, PageType.PROFILE) as PageType);
+    setCurrentPage(prev => Math.min(prev + 1, PageType.HOME) as PageType);
   }, [setCurrentPage]);
   
   const goToPrevPage = useCallback(() => {
@@ -25,7 +25,7 @@ export const useNavigation = () => {
   }, [setCurrentPage]);
   
   const goToLastPage = useCallback(() => {
-    setCurrentPage(PageType.PROFILE);
+    setCurrentPage(PageType.HOME);
   }, [setCurrentPage]);
   
   return {

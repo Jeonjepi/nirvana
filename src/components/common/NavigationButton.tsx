@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '@/contexts/AppContext';
 import { PageType } from '@/types';
 import { cn } from '@/utils/cn';
@@ -17,7 +16,6 @@ const NavigationButton: React.FC<NavigationButtonProps> = ({
   size = 'md',
   disabled = false
 }) => {
-  const navigate = useNavigate();
   const { setCurrentPage } = useAppContext();
   const [isPressed, setIsPressed] = useState(false);
   

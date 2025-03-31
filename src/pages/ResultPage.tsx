@@ -39,7 +39,7 @@ const applyGlobalStyles = () => {
 
 const ResultPage: React.FC = () => {
   const { setCurrentPage } = useAppContext();
-  const wishText = localStorage.getItem('userWish') || '소원';
+  // const wishText = localStorage.getItem('userWish') || '소원';
   
   // 컴포넌트가 마운트될 때 글로벌 스타일 적용
   useEffect(() => {
@@ -95,13 +95,11 @@ const ResultPage: React.FC = () => {
               />
               
               {/* 해/달/견/과 타이틀 */}
-              <div className="bg-gradient-to-r from-purple-500 via-blue-500 to-green-500 p-3 rounded-lg border-2 border-white">
                 <img 
-                  src="/assets/images/heatalcompany_logo_2.png" 
+                  src="/assets/images/haetal_company_logo.png" 
                   alt="해/달/견/과" 
-                  className="h-8 w-auto"
+                  className="h-16 w-auto"
                 />
-              </div>
               
               {/* 오른쪽 촛불 */}
               <img 

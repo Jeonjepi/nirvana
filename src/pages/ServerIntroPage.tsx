@@ -65,7 +65,7 @@ const ServerIntroPage: React.FC = () => {
   }, []);
 
   // 이미지 클릭 핸들러
-  const handleImageClick = (id: number, containsBuddha: boolean) => {
+  const handleImageClick = (id: number, ) => {
     if (selectedImages.includes(id)) {
       // 이미 선택된 이미지면 선택 해제
       setSelectedImages(prev => prev.filter(imgId => imgId !== id));
@@ -146,7 +146,7 @@ const ServerIntroPage: React.FC = () => {
                   <div
                     key={image.id}
                     className="aspect-square flex items-center justify-center"
-                    onClick={() => handleImageClick(image.id, image.containsBuddha)}
+                    onClick={() => handleImageClick(image.id)}
                   >
                     <img
                       src={selectedImages.includes(image.id) ? image.selected : image.default}
