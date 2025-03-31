@@ -21,7 +21,7 @@ const SocialPage: React.FC = () => {
 
   // 페이지 로드 시 버블 생성
   useEffect(() => {
-    const numberOfBubbles = 12; // 버블 개수
+    const numberOfBubbles = 15; // 버블 개수
     const newBubbles: Bubble[] = [];
 
     for (let i = 0; i < numberOfBubbles; i++) {
@@ -30,7 +30,7 @@ const SocialPage: React.FC = () => {
         left: Math.random() * 100, // 화면의 랜덤한 x 위치 (%)
         top: Math.random() * 100, // 화면의 랜덤한 y 위치 (%)
         size: 40 + Math.random() * 60, // 버블 크기 (40px~100px)로 증가
-        speed: 15 + Math.random() * 25, // 애니메이션 속도 (15s~40s)
+        speed: 15 + Math.random() * 60, // 애니메이션 속도 (15s~40s)
         delay: Math.random() * 10, // 시작 딜레이 (0s~10s)
       });
     }
@@ -64,31 +64,37 @@ const SocialPage: React.FC = () => {
           }
         }
         
-        /* 아이폰 16 대응을 위한 스타일 */
+        /* 모바일 최적화 스타일 */
         html, body, #root {
           margin: 0;
           padding: 0;
           height: 100%;
           width: 100%;
-          overflow: hidden;
+          overflow-x: hidden; /* 가로 스크롤만 방지 */
+        }
+        
+        body {
+          position: relative;
+          background-color: #000; /* 배경색 설정 */
         }
       `}</style>
 
       <div 
-        className="relative flex flex-col items-center justify-center min-h-screen w-full bg-cover bg-center bg-no-repeat overflow-hidden"
+        className="relative flex flex-col items-center min-h-screen w-full bg-fixed bg-cover bg-center bg-no-repeat"
         style={{ 
           backgroundImage: "url('/assets/images/background_1.png')",
-          height: "100vh", // 화면 높이 100%
-          width: "100vw", // 화면 너비 100%
-          maxWidth: "100%",
-          paddingBottom: "64px" // NEXT 버튼 위한 공간 확보
+          padding: "0", 
+          margin: "0",
+          width: "100%", 
+          minHeight: "100vh",
+          overflowY: "auto" // 세로 스크롤 허용
         }}
       >
         {/* 떠다니는 버블들 */}
         {bubbles.map((bubble) => (
           <div
             key={bubble.id}
-            className="absolute pointer-events-none z-10"
+            className="fixed pointer-events-none z-10"
             style={{
               left: `${bubble.left}%`,
               top: `${bubble.top}%`,
@@ -107,15 +113,15 @@ const SocialPage: React.FC = () => {
         ))}
         
         {/* 텍스트 영역 - 오른쪽 정렬 */}
-        <div className="relative z-10 flex flex-col items-end justify-center px-8 py-8 w-full max-w-lg text-right text-red-600 font-sam3kr">
-          <p className="mb-6 text-3xl">불기 3mm년...</p>
+        <div className="relative z-10 flex flex-col items-end justify-center px-5 py-12 w-full max-w-lg text-right text-red-600 font-sam3kr mt-12">
+          <p className="mb-6 text-4xl sm:text-5xl">불기 3mm년...</p>
           
-          <p className="mb-4 text-2xl">
+          <p className="mb-4 text-xl sm:text-2xl">
             북쪽나라 0과 1의 디지털 <br/>
             사바세계에도 화현하시니...
           </p>
           
-          <p className="mb-4 text-2xl">
+          <p className="mb-4 text-xl sm:text-2xl">
             3~4년이 지나도 <br/>
             중생의 고통과 행복,, <br/>
             그리고 게임을을 <br/>
@@ -123,18 +129,18 @@ const SocialPage: React.FC = () => {
             끝이지 않았고
           </p>
           
-          <p className="mb-4 text-2xl">
+          <p className="mb-4 text-xl sm:text-2xl">
             24세기, 메타버스의 <br/>
             프로젝트와 함께 <br/>
             그 교량이 이어졌다.
           </p>
           
-          <p className="mb-4 text-2xl">
+          <p className="mb-4 text-xl sm:text-2xl">
             디지털 사바세계에 <br/>
             화현하신 부처님.
           </p>
           
-          <p className="mb-4 text-2xl">
+          <p className="mb-4 text-xl sm:text-2xl pb-16">
             우리 중생들은 <br/>
             무지님을 본다면 <br/>
             가장 먼저 무엇을 <br/>
@@ -142,8 +148,8 @@ const SocialPage: React.FC = () => {
           </p>
         </div>
         
-        {/* NEXT 버튼 */}
-        <div className="absolute bottom-4 right-4 z-20">
+        {/* NEXT 버튼 - 고정 위치 */}
+        <div className="fixed bottom-4 right-4 z-20">
           <button 
             onClick={() => {
               // AppContext를 사용하여 다음 페이지로 이동
