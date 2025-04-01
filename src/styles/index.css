@@ -5,14 +5,45 @@
 @tailwind utilities;
 
 @layer base {
+  html, body, #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100dvh; /* Dynamic Viewport Height */
+    overflow: hidden;
+  }
+  
   body {
-    @apply m-0 p-0 font-sans text-gray-800;
+    @apply font-sans text-gray-800;
+  }
+  
+  /* dvh/svh를 지원하지 않는 브라우저를 위한 폴백 */
+  @supports not (height: 100dvh) {
+    html, body, #root {
+      height: 100vh;
+    }
   }
 }
 
 @layer components {
   .page-container {
     @apply flex flex-col items-center justify-start min-h-screen max-w-4xl mx-auto;
+    height: 100dvh;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  
+  .mobile-container-wrapper {
+    @apply fixed top-0 left-0 w-full flex justify-center items-center bg-[#f0f0f0];
+    height: 100dvh;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  
+  .mobile-content-container {
+    @apply relative w-full overflow-hidden bg-transparent;
+    max-width: 430px; /* 아이폰 16 Pro Max 너비 */
+    height: 100svh; /* Small Viewport Height */
+    max-height: 100dvh;
+    aspect-ratio: 430/932; /* 아이폰 16 Pro Max 비율 */
   }
   
   .page-header {
@@ -29,5 +60,14 @@
   
   .nav-button {
     @apply px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors;
+  }
+  
+  /* 버블 애니메이션 */
+  @keyframes float {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); }
+    25% { transform: translateY(-20px) translateX(10px) rotate(5deg); }
+    50% { transform: translateY(0) translateX(20px) rotate(0deg); }
+    75% { transform: translateY(20px) translateX(10px) rotate(-5deg); }
+    100% { transform: translateY(0) translateX(0) rotate(0deg); }
   }
 }

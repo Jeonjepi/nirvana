@@ -15,7 +15,22 @@ export default {
         // sans: ['Noto Sans KR', 'sans-serif'],
         // 커스텀 폰트 추가
         'sam3kr': ['Sam3KRFont']       
-      }
+      },
+      height: {
+        'screen-dvh': '100dvh',
+        'screen-svh': '100svh',
+        'screen-lvh': '100lvh',
+      },
+      minHeight: {
+        'screen-dvh': '100dvh',
+        'screen-svh': '100svh',
+        'screen-lvh': '100lvh',
+      },
+      maxHeight: {
+        'screen-dvh': '100dvh',
+        'screen-svh': '100svh',
+        'screen-lvh': '100lvh',
+      },
     },
   },
   corePlugins: {
