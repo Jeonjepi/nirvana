@@ -86,11 +86,11 @@ const MeditationPage: React.FC = () => {
   const [isFadingOut, setIsFadingOut] = useState(false);
   const navigationRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  
+
   // 컴포넌트가 마운트될 때 글로벌 스타일 적용
   useEffect(() => {
     applyGlobalStyles();
-    
+
     // 폰트 로딩 후 적용을 위해 약간의 지연 추가
     const fontLoadTimeout = setTimeout(() => {
       if (textareaRef.current) {
@@ -103,7 +103,7 @@ const MeditationPage: React.FC = () => {
         }, 10);
       }
     }, 100);
-    
+
     return () => {
       const styleTag = document.getElementById('meditation-page-styles');
       if (styleTag) {
@@ -112,28 +112,28 @@ const MeditationPage: React.FC = () => {
       clearTimeout(fontLoadTimeout);
     };
   }, []);
-  
+
   // 텍스트 입력 핸들러
   const handleWishChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setWishText(e.target.value);
   };
-  
+
   // 입력 완료 후 다음 페이지로 이동
   const handleSubmitWish = () => {
     if (wishText.trim().length > 0) {
       // 로컬 스토리지에 소원 저장 (필요시)
       localStorage.setItem('userWish', wishText.trim());
-      
+
       // 페이드 아웃 효과 시작
       setIsFadingOut(true);
-      
+
       // 일정 시간 후 다음 페이지로 이동
       setTimeout(() => {
         if (navigationRef.current) {
-          const navButton = navigationRef.current.querySelector('button') || 
-                            navigationRef.current.querySelector('a') ||
-                            navigationRef.current;
-          
+          const navButton = navigationRef.current.querySelector('button') ||
+            navigationRef.current.querySelector('a') ||
+            navigationRef.current;
+
           if (navButton && typeof navButton.click === 'function') {
             navButton.click();
           }
@@ -141,7 +141,7 @@ const MeditationPage: React.FC = () => {
       }, 1000); // 1초 후 다음 페이지로 이동 (페이드 효과 시간과 맞춤)
     }
   };
-  
+
   // 취소 버튼 핸들러
   const handleCancel = () => {
     setWishText('');
@@ -149,12 +149,12 @@ const MeditationPage: React.FC = () => {
       textareaRef.current.focus();
     }
   };
-  
+
   // 확인 버튼 핸들러
   const handleConfirm = () => {
     handleSubmitWish();
   };
-  
+
   return (
     <Layout
       pageNumber={PageType.MEDITATION}
@@ -163,14 +163,14 @@ const MeditationPage: React.FC = () => {
     >
       {/* 페이드 아웃 오버레이 */}
       <div className={`fade-out-overlay ${isFadingOut ? 'active' : ''}`}></div>
-      
+
       {/* 전체 컨테이너 - 우주 배경 */}
-      <div 
+      <div
         className={cn(
           "relative flex flex-col items-center justify-between",
           "min-h-screen w-full bg-cover bg-center bg-no-repeat"
         )}
-        style={{ 
+        style={{
           backgroundImage: "url('/assets/images/background_2.png')",
           minHeight: "100svh", // svh 사용
           width: "100%",
@@ -187,32 +187,32 @@ const MeditationPage: React.FC = () => {
             <div className="relative p-2 rounded-lg overflow-hidden w-full">
               <div className="flex items-center justify-center relative z-10 py-2">
                 {/* 왼쪽 촛불 */}
-                <img 
-                  src="/assets/images/candle.gif" 
-                  alt="candle" 
+                <img
+                  src="/assets/images/candle.gif"
+                  alt="candle"
                   className="h-15 w-auto mr-6"
                 />
-                
+
                 {/* 부처님 이미지 */}
-                <div className="relative">
-                  <img 
-                    src="/assets/images/buddhai.gif" 
-                    alt="Buddha Logo" 
-                    className="h-12 w-auto"
+                <div className="flex-shrink-0 flex items-center justify-center" style={{ height: '100px', width: '60px' }}>
+                  <img
+                    src="/assets/images/buddhai.gif"
+                    alt="Buddha Logo"
+                    className="max-h-full max-w-full object-contain"
                   />
                 </div>
-                
+
                 {/* 오른쪽 촛불 */}
-                <img 
-                  src="/assets/images/candle.gif" 
-                  alt="candle" 
+                <img
+                  src="/assets/images/candle.gif"
+                  alt="candle"
                   className="h-15 w-auto ml-6"
                 />
               </div>
             </div>
           </div>
         </div>
-        
+
         {/* 중간 영역 - 말풍선과 손 이미지, 직접 스타일링 */}
         <div className="flex-1 flex flex-col items-center justify-center w-full" style={{ marginTop: '30px' }}>
           {/* 말풍선 영역 - 직접 스타일링으로 구현 */}
@@ -223,11 +223,11 @@ const MeditationPage: React.FC = () => {
             marginBottom: '20px',
           }}>
             {/* 말풍선 이미지 */}
-            <img 
-              src="/assets/images/speak.png" 
+            <img
+              src="/assets/images/speak.png"
               alt="Speech Bubble"
               style={{
-                width: '100%',
+                width: '200%',
                 height: '100%',
                 objectFit: 'contain',
                 position: 'absolute',
@@ -284,7 +284,7 @@ const MeditationPage: React.FC = () => {
                   borderRadius: '12px',
                   backgroundColor: '#fff8c4',
                   color: '#8b7d00',
-                  border: '1px solid #ffe066',
+                  border: 'none',
                   fontSize: '12px',
                   fontWeight: 500,
                   cursor: 'pointer',
@@ -303,7 +303,7 @@ const MeditationPage: React.FC = () => {
                   borderRadius: '12px',
                   backgroundColor: '#ffeb3b',
                   color: '#755500',
-                  border: '1px solid #ffd600',
+                  border: 'none',
                   fontSize: '12px',
                   fontWeight: 500,
                   cursor: 'pointer',
@@ -315,11 +315,11 @@ const MeditationPage: React.FC = () => {
               </button>
             </div>
           </div>
-          
+
           {/* 손 이미지 */}
           <div className="flex justify-center w-full">
-            <img 
-              src="/assets/images/hand.gif" 
+            <img
+              src="/assets/images/hand.gif"
               alt="Praying Hands"
               className={`w-20 h-auto object-contain ${!isInputFocused ? 'floating' : ''}`}
             />
@@ -328,7 +328,7 @@ const MeditationPage: React.FC = () => {
 
         {/* 하단 네비게이션 버튼 - 숨겨두고 참조만 사용 */}
         <div className="w-full flex justify-end p-4 mb-10 opacity-0 absolute" style={{ bottom: 0, right: 0, pointerEvents: 'none' }} ref={navigationRef}>
-          <NavigationButton 
+          <NavigationButton
             targetPage={PageType.RESULT}
           />
         </div>
