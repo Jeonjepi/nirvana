@@ -99,24 +99,26 @@ const ServerIntroPage: React.FC = () => {
       pageSubtitle={PAGE_SUBTITLE}
     >
       {/* 전체 컨테이너 - 하늘 배경 */}
-      <div
-        className={cn(
-          "relative flex flex-col items-center justify-between",
-          "min-h-screen w-full bg-cover bg-center bg-no-repeat overflow-hidden"
-        )}
-        style={{
-          backgroundImage: "url('/assets/images/background_1.png')",
-          height: "100vh",
-          width: "100vw",
-          maxWidth: "100%",
-        }}
-      >
+ <div
+ className={cn(
+   "relative flex flex-col items-center justify-between",
+   "min-h-screen w-full bg-cover bg-center bg-no-repeat"
+ )}
+ style={{
+   backgroundImage: "url('/assets/images/background_1.png')",
+   minHeight: "100svh", // dvh 대신 svh 사용
+   width: "100vw",
+   maxWidth: "100%",
+   overflowY: "auto", // 스크롤 가능하도록 변경
+   paddingBottom: "calc(env(safe-area-inset-bottom) + 80px)" // 하단 여백 추가
+ }}
+>
         {/* 상단 로고 이미지 */}
-        <div className="w-full flex items-center justify-center mt-8">
+        <div className="w-full flex items-center justify-center mt-8 mb-8">
           <img
             src="/assets/images/heatalcompany_logo_2.png"
             alt="해탈컴퍼니108"
-            className="h-15 w-auto"
+            className="h-10 pb-3 w-auto"
           />
         </div>
 
@@ -159,33 +161,29 @@ const ServerIntroPage: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="w-full flex items-center justify-center mt-8">
-          <div className="relative rounded-lg overflow-hidden" style={{ width: '90%', maxWidth: '420px' }}>
-            {/* 배경 이미지 */}
-            <div className="relative p-2 rounded-lg overflow-hidden w-full">
-              <div className="flex items-center justify-center relative z-10 py-2">
-                {/* 왼쪽 촛불 */}
+        
+        <div className="w-full flex items-center justify-center mt-4" style={{ paddingBottom: "60px" }}>
+    <div className="relative rounded-lg overflow-hidden" style={{ width: '90%', maxWidth: '420px' }}>
+      <div className="relative rounded-lg overflow-hidden w-full">
+        <div className="flex items-center justify-center relative z-10">
+                  {/* 왼쪽 촛불 */}
                 <img
-                  src="/assets/images/candle.gif"
-                  alt="candle"
-                  className="h-24 w-auto mr-10" // 높이 증가 h-16 -> h-24, 여백 증가 mr-4 -> mr-6
-                />
-
-                {/* 부처님 이미지 */}
-                <div className="relative">
-                  <img
-                    src="/assets/images/buddhai.gif"
-                    alt="Buddha Logo"
-                    className="h-24 w-auto" // 높이 증가 h-24 -> h-32
-                  />
-                </div>
-
-                {/* 오른쪽 촛불 */}
-                <img
-                  src="/assets/images/candle.gif"
-                  alt="candle"
-                  className="h-24 w-auto ml-10" // 높이 증가 h-16 -> h-24, 여백 증가 ml-4 -> ml-6
-                />
+            src="/assets/images/candle.gif"
+            alt="candle"
+            className="h-16 w-auto mr-8" // h-24 -> h-16으로 축소
+          />
+          <div className="relative">
+            <img
+              src="/assets/images/buddhai.gif"
+              alt="Buddha Logo"
+              className="h-20 w-auto" // h-24 -> h-20으로 축소
+            />
+          </div>
+          <img
+            src="/assets/images/candle.gif"
+            alt="candle"
+            className="h-16 w-auto ml-8" // h-24 -> h-16으로 축소
+          />
               </div>
             </div>
           </div>
@@ -195,10 +193,11 @@ const ServerIntroPage: React.FC = () => {
         {/* 완료 메시지 */}
         {completed && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div className="bg-white p-4 rounded text-center">
-              <p className="text-xl font-bold text-green-600 mb-2">정확히 부처를 찾으셨습니다!</p>
-              <p>다음 페이지로 이동합니다...</p>
-            </div>
+             <img
+            src="/assets/images/find.png"
+            alt="find"
+            className="h-80 w-auto ml-8" // h-24 -> h-16으로 축소
+          />
           </div>
         )}
       </div>

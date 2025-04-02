@@ -9,6 +9,7 @@ import SocialPage from './pages/SocialPage';
 import MeditationPage from './pages/MeditationPage';
 import LoadingPage from './pages/LodingPage';
 import ResultPage from './pages/ResultPage';
+import EndingPage from './pages/EndingPage';
 
 function App() {
   const { currentPage } = useAppContext();
@@ -31,7 +32,7 @@ function App() {
         <Route path="/meditation" element={<MeditationPage />} />
         <Route path="/loading" element={<LoadingPage />} />
         <Route path="/result" element={<ResultPage />} />
-        {/* <Route path="/ending" element={<LoadingPage />} /> */}
+        <Route path="/ending" element={<EndingPage />} />
       </Routes>
     </div>
   );

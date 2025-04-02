@@ -39,12 +39,13 @@
   }
   
   .mobile-content-container {
-    @apply relative w-full overflow-hidden bg-transparent;
-    max-width: 430px; /* 아이폰 16 Pro Max 너비 */
-    height: 100svh; /* Small Viewport Height */
-    max-height: 100dvh;
-    aspect-ratio: 430/932; /* 아이폰 16 Pro Max 비율 */
+    /* 고정 높이 대신 최소 높이 사용 */
+    min-height: 100svh;
+    height: auto;
+    padding-bottom: calc(env(safe-area-inset-bottom) + 80px); /* 안전 영역 + 추가 여백 */
+    overflow-y: auto; /* 스크롤 허용 */
   }
+  
   
   .page-header {
     @apply flex flex-col items-start w-full mb-8;

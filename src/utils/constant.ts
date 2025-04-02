@@ -13,6 +13,7 @@ export const PAGE_ROUTES: Record<PageType, string> = {
   [PageType.MEDITATION]: '/meditation',
   [PageType.LOADING]: '/loading',
   [PageType.RESULT]: '/result',
+  [PageType.ENDING]: '/ending',
 };
 
 // Page titles
@@ -23,6 +24,7 @@ export const PAGE_TITLES: Record<PageType, string> = {
   [PageType.MEDITATION]: '명상',
   [PageType.LOADING]: '로딩',
   [PageType.RESULT]: '결과',
+  [PageType.ENDING]: '엔딩',
 };
 
 // Common subtitle
